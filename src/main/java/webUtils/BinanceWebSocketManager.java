@@ -31,7 +31,7 @@ public class BinanceWebSocketManager {
                     //System.out.println(event);
                     try {
                         QueueHandler.add(event);
-                        System.out.println("Events Added " + added.getAndIncrement());
+                        //System.out.println("Events Added " + added.getAndIncrement());
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

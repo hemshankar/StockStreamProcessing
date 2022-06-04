@@ -42,7 +42,7 @@ public class EventProcessor {
                         try {
                             String event = QueueHandler.get();
                             //System.out.println(d.id + " processed: " + d.counter++);
-                            System.out.println("Events Processed " + processed.getAndIncrement());
+                            //System.out.println("Events Processed " + processed.getAndIncrement());
                             JsonObject obj = d.parser.parse(event).getAsJsonObject().get("data").getAsJsonObject();
 
                             //get the symbol out
@@ -56,7 +56,7 @@ public class EventProcessor {
                             SymbolModel sDetails = SymbolsManager.symbolDetailsList.get(index);
                             sDetails.infiniteMedian.name = symbol;
                             sDetails.infiniteMedian.add(Double.parseDouble(price));
-                            System.out.println(sDetails.infiniteMedian.getCurrentState());
+                            //System.out.println(sDetails.infiniteMedian.getCurrentState());
                         }catch(Exception e){
                             e.printStackTrace();
                         }
