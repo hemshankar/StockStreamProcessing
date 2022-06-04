@@ -1,6 +1,6 @@
 package stats.utils;
 
-import javafx.util.Pair;
+import symbols.utils.SymbolsManager;
 
 import java.util.*;
 
@@ -9,18 +9,21 @@ public class InfiniteMedian {
     private PriorityQueue<Double> leftQ = new PriorityQueue<>((x, y) -> -x.compareTo(y));
     private PriorityQueue<Double> rightQ = new PriorityQueue<>();
     public Double lastAdded = -1.0; //mpr
+    public String name = "";
     public synchronized int getSize(){
         return leftQ.size() + rightQ.size();
     }
 
-    public synchronized Pair<Double,Double> getMedianAndMRP(){
+    public synchronized SymbolsManager.SymbolDetails getCurrentState(){
         int size = leftQ.size() + rightQ.size();
         //System.out.println("Size: " + size + "[" + leftQ + " --- " + rightQ + "]");
+        Double median = 0.0;
         if(size %2 == 0){
-            return new Pair<>(lastAdded, (leftQ.peek() + rightQ.peek())/2);
+            median = (leftQ.peek() + rightQ.peek())/2;
         }else{
-            return new Pair<>(lastAdded, leftQ.peek());
+            median = leftQ.peek();
         }
+        return new SymbolsManager.SymbolDetails(name, size, median, lastAdded);
     }
 
 
@@ -76,7 +79,7 @@ public class InfiniteMedian {
 
         dList.forEach(i -> x.add(i));
 
-        System.out.println(x.getMedianAndMRP());
+        System.out.println(x.getCurrentState());
 
     }
 

@@ -56,7 +56,7 @@ public class EventProcessor {
                             SymbolModel sDetails = SymbolsManager.symbolDetailsList.get(index);
 
                             sDetails.infiniteMedian.add(Double.parseDouble(price));
-                            System.out.println(symbol + ": " + sDetails.infiniteMedian.getMedianAndMRP());
+                            System.out.println(sDetails.infiniteMedian.getCurrentState());
                         }catch(Exception e){
                             e.printStackTrace();
                         }

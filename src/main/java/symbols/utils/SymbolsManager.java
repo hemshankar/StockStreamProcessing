@@ -1,7 +1,6 @@
 package symbols.utils;
 
 import com.google.gson.*;
-import javafx.util.Pair;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -49,8 +48,8 @@ public class SymbolsManager {
 
     public SymbolDetails getDetails(String sym){
         SymbolModel model = symbolDetailsList.get(myTrie.getIndex(sym));
-        Pair<Double, Double> info = model.infiniteMedian.getMedianAndMRP();
-        return new SymbolDetails(sym, model.infiniteMedian.getSize(), info.getValue(), info.getKey());
+        model.infiniteMedian.name = sym; // TODO: Fix this
+        return model.infiniteMedian.getCurrentState();
     }
 
 
