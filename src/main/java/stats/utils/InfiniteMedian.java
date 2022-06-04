@@ -7,8 +7,11 @@ public class InfiniteMedian {
     private PriorityQueue<Double> leftQ = new PriorityQueue<>((x, y) -> -x.compareTo(y));
     private PriorityQueue<Double> rightQ = new PriorityQueue<>();
 
+    public synchronized int giveSize(){
+        return leftQ.size() + rightQ.size();
+    }
 
-    public Double giveMedian(){
+    public synchronized Double giveMedian(){
         int size = leftQ.size() + rightQ.size();
         if(size %2 == 0){
             return (leftQ.peek() + rightQ.peek())/2;
@@ -18,7 +21,7 @@ public class InfiniteMedian {
     }
 
 
-    public void add(Double val){
+    public synchronized void add(Double val){
         int size = leftQ.size() + rightQ.size();
         if(size == 0){
             leftQ.add(val);

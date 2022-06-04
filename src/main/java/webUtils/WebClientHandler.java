@@ -25,6 +25,7 @@ public class WebClientHandler{
     }
 
     public void stopStreaming(){
+        System.out.println("Closing all connection for stream: " + streamID);
         if(streamID != -1) {
             client.closeConnection(streamID);
         }
