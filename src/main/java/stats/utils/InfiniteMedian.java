@@ -16,6 +16,9 @@ public class InfiniteMedian {
 
     public synchronized SymbolsManager.SymbolDetails getCurrentState(){
         int size = leftQ.size() + rightQ.size();
+        if(size == 0){
+            return new SymbolsManager.SymbolDetails(name, size, 0.0, 0.0);
+        }
         //System.out.println("Size: " + size + "[" + leftQ + " --- " + rightQ + "]");
         Double median = 0.0;
         if(size %2 == 0){

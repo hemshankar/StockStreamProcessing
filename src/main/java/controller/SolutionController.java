@@ -13,7 +13,7 @@ import java.util.Map;
 @RestController
 public class SolutionController {
 
-    SymbolsManager sm = new SymbolsManager(10);
+    SymbolsManager sm = new SymbolsManager(0,10000);
     BinanceWebSocketManager webSocketManager = new BinanceWebSocketManager(sm);
     EventProcessor queueProcessor = new EventProcessor();
     public SolutionController(){

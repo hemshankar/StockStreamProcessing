@@ -54,7 +54,7 @@ public class EventProcessor {
                             Integer index = SymbolsManager.myTrie.getIndex(symbol);
 
                             SymbolModel sDetails = SymbolsManager.symbolDetailsList.get(index);
-
+                            sDetails.infiniteMedian.name = symbol;
                             sDetails.infiniteMedian.add(Double.parseDouble(price));
                             System.out.println(sDetails.infiniteMedian.getCurrentState());
                         }catch(Exception e){

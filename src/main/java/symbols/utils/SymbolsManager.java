@@ -41,6 +41,10 @@ public class SymbolsManager {
     public SymbolsManager(int topN){
         getAllSymbols(topN);
     }
+
+    public SymbolsManager(int start, int end){
+        getAllSymbols(start, end);
+    }
     public static final MyHashUtil myTrie = new MyHashUtil();
     public static final List<SymbolModel> symbolDetailsList = new ArrayList<>();
 
@@ -54,6 +58,10 @@ public class SymbolsManager {
 
 
     public void getAllSymbols(int topN) {
+        getAllSymbols(0, topN);
+    }
+
+    public void getAllSymbols(int start, int end){
         OkHttpClient client = new OkHttpClient();
         String url = "https://api.binance.com/api/v3/exchangeInfo";
         JsonParser parser = new JsonParser();
@@ -63,8 +71,9 @@ public class SymbolsManager {
             JsonObject rootObj = parser.parse(str).getAsJsonObject();
             JsonArray arr = rootObj.getAsJsonArray("symbols");
             System.out.println("Size: " + arr.size());
-            if(topN < 0) topN = arr.size();
-            for(int i=0;i<topN;i++) {
+            if(end < 0) end = arr.size();
+            if(end > arr.size()) end = arr.size();
+            for(int i=start;i<end;i++) {
                 String sy = arr.get(i).getAsJsonObject().get("symbol").getAsString();
                 allSymbols.add(sy.toLowerCase());
                 symbolDetailsList.add(new SymbolModel());
