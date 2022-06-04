@@ -1,4 +1,4 @@
-package webUtils;
+package symbols.utils;
 
 import com.google.gson.*;
 import okhttp3.OkHttpClient;
