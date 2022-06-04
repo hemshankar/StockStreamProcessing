@@ -11,6 +11,10 @@ import java.util.List;
 
 public class SymbolsManager {
 
+    public SymbolsManager(){
+        getAllSumbols();
+    }
+
     public List<String> allSymbols = new ArrayList<>();
 
     public void getAllSumbols() {
@@ -38,7 +42,6 @@ public class SymbolsManager {
 
     public static void main(String[] args) {
         SymbolsManager sm = new SymbolsManager();
-        sm.getAllSumbols();
     }
 
 }
