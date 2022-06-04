@@ -1,6 +1,7 @@
 package symbols.utils;
 
 import com.google.gson.*;
+import javafx.util.Pair;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -11,6 +12,30 @@ import java.util.List;
 
 public class SymbolsManager {
 
+    public static class SymbolDetails{
+        public SymbolDetails(String name, Integer total, Double median, Double mrp) {
+            this.name = name;
+            this.total = total;
+            this.median = median;
+            this.mrp = mrp;
+        }
+
+        public String name;
+        public Integer total;
+        public Double median;
+        public Double mrp;
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "name='" + name + '\'' +
+                    ", total=" + total +
+                    ", median=" + median +
+                    ", mrp=" + mrp +
+                    '}';
+        }
+    }
+
     public SymbolsManager(){
         getAllSymbols(-1);
     }
@@ -18,11 +43,15 @@ public class SymbolsManager {
         getAllSymbols(topN);
     }
     public static final MyHashUtil myTrie = new MyHashUtil();
-    public static final List<SymbolDetails> symbolDetailsList = new ArrayList<>();
+    public static final List<SymbolModel> symbolDetailsList = new ArrayList<>();
 
     public List<String> allSymbols = new ArrayList<>();
 
-
+    public SymbolDetails getDetails(String sym){
+        SymbolModel model = symbolDetailsList.get(myTrie.getIndex(sym));
+        Pair<Double, Double> info = model.infiniteMedian.getMedianAndMRP();
+        return new SymbolDetails(sym, model.infiniteMedian.getSize(), info.getValue(), info.getKey());
+    }
 
 
     public void getAllSymbols(int topN) {
@@ -39,7 +68,7 @@ public class SymbolsManager {
             for(int i=0;i<topN;i++) {
                 String sy = arr.get(i).getAsJsonObject().get("symbol").getAsString();
                 allSymbols.add(sy.toLowerCase());
-                symbolDetailsList.add(new SymbolDetails());
+                symbolDetailsList.add(new SymbolModel());
             }
             System.out.println(allSymbols.size());
 

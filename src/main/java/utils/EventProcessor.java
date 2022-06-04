@@ -2,7 +2,7 @@ package utils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import symbols.utils.SymbolDetails;
+import symbols.utils.SymbolModel;
 import symbols.utils.SymbolsManager;
 
 import java.util.UUID;
@@ -53,10 +53,10 @@ public class EventProcessor {
 
                             Integer index = SymbolsManager.myTrie.getIndex(symbol);
 
-                            SymbolDetails sDetails = SymbolsManager.symbolDetailsList.get(index);
+                            SymbolModel sDetails = SymbolsManager.symbolDetailsList.get(index);
 
                             sDetails.infiniteMedian.add(Double.parseDouble(price));
-                            System.out.println(symbol + ": " + sDetails.infiniteMedian.getMedian());
+                            System.out.println(symbol + ": " + sDetails.infiniteMedian.getMedianAndMRP());
                         }catch(Exception e){
                             e.printStackTrace();
                         }

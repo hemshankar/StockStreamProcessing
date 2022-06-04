@@ -3,6 +3,6 @@ package symbols.utils;
 
 import stats.utils.InfiniteMedian;
 
-public class SymbolDetails {
+public class SymbolModel {
     public InfiniteMedian infiniteMedian = new InfiniteMedian();
 }

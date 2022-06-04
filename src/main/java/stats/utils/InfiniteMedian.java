@@ -1,5 +1,7 @@
 package stats.utils;
 
+import javafx.util.Pair;
+
 import java.util.*;
 
 public class InfiniteMedian {
@@ -7,17 +9,17 @@ public class InfiniteMedian {
     private PriorityQueue<Double> leftQ = new PriorityQueue<>((x, y) -> -x.compareTo(y));
     private PriorityQueue<Double> rightQ = new PriorityQueue<>();
     public Double lastAdded = -1.0; //mpr
-    public synchronized int giveSize(){
+    public synchronized int getSize(){
         return leftQ.size() + rightQ.size();
     }
 
-    public synchronized Double getMedian(){
+    public synchronized Pair<Double,Double> getMedianAndMRP(){
         int size = leftQ.size() + rightQ.size();
         //System.out.println("Size: " + size + "[" + leftQ + " --- " + rightQ + "]");
         if(size %2 == 0){
-            return (leftQ.peek() + rightQ.peek())/2;
+            return new Pair<>(lastAdded, (leftQ.peek() + rightQ.peek())/2);
         }else{
-            return leftQ.peek();
+            return new Pair<>(lastAdded, leftQ.peek());
         }
     }
 
@@ -74,7 +76,7 @@ public class InfiniteMedian {
 
         dList.forEach(i -> x.add(i));
 
-        System.out.println(x.getMedian());
+        System.out.println(x.getMedianAndMRP());
 
     }
 
