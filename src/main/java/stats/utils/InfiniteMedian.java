@@ -6,13 +6,14 @@ public class InfiniteMedian {
 
     private PriorityQueue<Double> leftQ = new PriorityQueue<>((x, y) -> -x.compareTo(y));
     private PriorityQueue<Double> rightQ = new PriorityQueue<>();
-
+    public Double lastAdded = -1.0; //mpr
     public synchronized int giveSize(){
         return leftQ.size() + rightQ.size();
     }
 
-    public synchronized Double giveMedian(){
+    public synchronized Double getMedian(){
         int size = leftQ.size() + rightQ.size();
+        //System.out.println("Size: " + size + "[" + leftQ + " --- " + rightQ + "]");
         if(size %2 == 0){
             return (leftQ.peek() + rightQ.peek())/2;
         }else{
@@ -22,6 +23,7 @@ public class InfiniteMedian {
 
 
     public synchronized void add(Double val){
+        lastAdded = val;
         int size = leftQ.size() + rightQ.size();
         if(size == 0){
             leftQ.add(val);
@@ -72,7 +74,7 @@ public class InfiniteMedian {
 
         dList.forEach(i -> x.add(i));
 
-        System.out.println(x.giveMedian());
+        System.out.println(x.getMedian());
 
     }
 

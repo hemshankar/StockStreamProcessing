@@ -17,7 +17,7 @@ public class MyHashUtil {
     }
 
     public int getIndex(String symbol){
-        return trie.getIndex(symbol);
+        return trie.getIndex(symbol.toLowerCase());
     }
 
     private class MyTrieNode{

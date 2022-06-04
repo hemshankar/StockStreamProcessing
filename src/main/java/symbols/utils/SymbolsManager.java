@@ -14,11 +14,15 @@ public class SymbolsManager {
     public SymbolsManager(){
         getAllSymbols(-1);
     }
-    MyHashUtil myTrie = new MyHashUtil();
+    public SymbolsManager(int topN){
+        getAllSymbols(topN);
+    }
+    public static final MyHashUtil myTrie = new MyHashUtil();
+    public static final List<SymbolDetails> symbolDetailsList = new ArrayList<>();
 
     public List<String> allSymbols = new ArrayList<>();
 
-    List<SymbolDetails> symbolDetailsList = new ArrayList<>();
+
 
 
     public void getAllSymbols(int topN) {
